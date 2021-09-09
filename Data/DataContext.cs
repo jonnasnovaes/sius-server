@@ -8,6 +8,7 @@ namespace sius_server.Data
     {
 
         public DbSet<Vacina> Vacina { get; set; }
+        public DbSet<Login> Login { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }
