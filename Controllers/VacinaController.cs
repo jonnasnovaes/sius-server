@@ -23,11 +23,25 @@ namespace sius_server.Controllers
             return Ok(vacina);
         }
         
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetVacinaById(int id)
+        {
+            var vacina = await _vacinaRep.GetOneById(id);
+            return Ok(vacina);
+        }
+        
         [HttpPost]
         public async Task<IActionResult> PostVacina(Vacina vacina)
         {
             var vacinaCriada = await _vacinaRep.CreateOne(vacina);
             return Ok(vacinaCriada);
+        }
+        
+        [HttpPut]
+        public async Task<IActionResult> PutVacina(Vacina vacina)
+        {
+            var vacinaAtualizada = await _vacinaRep.EditOne(vacina);
+            return Ok(vacinaAtualizada);
         }
         
         [HttpDelete("{id}")]

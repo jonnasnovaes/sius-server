@@ -63,11 +63,6 @@ namespace sius_server.Data
             return model;
         }
 
-        Task<T> IGenericRep<T>.EditOne(T model)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public async Task<T> GetOneById(int id)
         {
             var model = await _context.Set<T>().FindAsync(id);
