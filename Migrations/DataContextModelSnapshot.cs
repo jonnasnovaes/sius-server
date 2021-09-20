@@ -39,6 +39,24 @@ namespace sius_server.Migrations
                     b.ToTable("Login");
                 });
 
+            modelBuilder.Entity("sius_server.Models.SolicitarVacina", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("idVacina")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("liberado")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SolicitarVacina");
+                });
+
             modelBuilder.Entity("sius_server.Models.Vacina", b =>
                 {
                     b.Property<int>("Id")
