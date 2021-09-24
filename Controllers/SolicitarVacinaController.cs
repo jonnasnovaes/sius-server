@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using sius_server.Data;
 using sius_server.Data.Interfaces;
 using sius_server.Models;
 
@@ -13,10 +15,12 @@ namespace sius_server.Controllers
     {
         
         private readonly IGenericRep<SolicitarVacina> _solicitarVacinaRep;
+        private readonly DataContext _context;
         
-        public SolicitarVacinaController(IGenericRep<SolicitarVacina> solicitarVacinaRep)
+        public SolicitarVacinaController(IGenericRep<SolicitarVacina> solicitarVacinaRep, DataContext context)
         {
             _solicitarVacinaRep = solicitarVacinaRep;
+            _context = context;
         }
         
         [HttpGet]
@@ -26,11 +30,16 @@ namespace sius_server.Controllers
             return Ok(listaSolicitacoes);
         }
         
-        [HttpPost]
-        public async Task<IActionResult> PostSolicitarVacina(SolicitarVacina solicitarVacina)
+        [HttpPut]
+        public async Task<IActionResult> PutSolicitarVacina(SolicitarVacina solicitarVacina)
         {
-            var vacinaSolicitada = await _solicitarVacinaRep.CreateOne(solicitarVacina);
-            return Ok(vacinaSolicitada);
+            var vacinaSolicitada = await _context.Set<SolicitarVacina>().FirstOrDefaultAsync(x => x.idVacina == solicitarVacina.idVacina);
+            vacinaSolicitada.liberado = solicitarVacina.liberado;
+            
+            var vacinaEditada = await _solicitarVacinaRep.EditOne(vacinaSolicitada);
+            return Ok(vacinaEditada);
+            
+            
         }
         
     }

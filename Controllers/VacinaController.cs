@@ -10,10 +10,12 @@ namespace sius_server.Controllers
     public class VacinaController : ControllerBase
     {
         private readonly IGenericRep<Vacina> _vacinaRep;
+        private readonly IGenericRep<SolicitarVacina> _solicitarVacinaRep;
 
-        public VacinaController(IGenericRep<Vacina> vacinaRep)
+        public VacinaController(IGenericRep<Vacina> vacinaRep, IGenericRep<SolicitarVacina> solicitarVacinaRep)
         {
             _vacinaRep = vacinaRep;
+            _solicitarVacinaRep = solicitarVacinaRep;
         }
 
         [HttpGet]
@@ -34,6 +36,13 @@ namespace sius_server.Controllers
         public async Task<IActionResult> PostVacina(Vacina vacina)
         {
             var vacinaCriada = await _vacinaRep.CreateOne(vacina);
+            
+            SolicitarVacina solicitarVacina = new SolicitarVacina();
+            solicitarVacina.idVacina = vacina.Id;
+            solicitarVacina.liberado = true;
+                
+            await _solicitarVacinaRep.CreateOne(solicitarVacina);
+            
             return Ok(vacinaCriada);
         }
         

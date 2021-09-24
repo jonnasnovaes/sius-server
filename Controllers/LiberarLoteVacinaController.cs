@@ -51,6 +51,7 @@ namespace sius_server.Controllers
             var vacina = await  _context.Set<SolicitarVacina>().FirstOrDefaultAsync(x => x.idVacina == solicitarVacina.idVacina);
             vacina.liberado = solicitarVacina.liberado;
             
+            
             var vacinaSolicitada = await _solicitarVacinaRep.EditOne(vacina);
             
             return Ok(vacinaSolicitada);
