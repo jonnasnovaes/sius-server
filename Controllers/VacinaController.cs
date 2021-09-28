@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using sius_server.Data;
 using sius_server.Data.Interfaces;
 using sius_server.Models;
 
@@ -11,11 +13,13 @@ namespace sius_server.Controllers
     {
         private readonly IGenericRep<Vacina> _vacinaRep;
         private readonly IGenericRep<SolicitarVacina> _solicitarVacinaRep;
+        private readonly DataContext _context;
 
-        public VacinaController(IGenericRep<Vacina> vacinaRep, IGenericRep<SolicitarVacina> solicitarVacinaRep)
+        public VacinaController(IGenericRep<Vacina> vacinaRep, IGenericRep<SolicitarVacina> solicitarVacinaRep, DataContext context)
         {
             _vacinaRep = vacinaRep;
             _solicitarVacinaRep = solicitarVacinaRep;
+            _context = context;
         }
 
         [HttpGet]
@@ -56,6 +60,9 @@ namespace sius_server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVacina(int id)
         {
+            var solicitarVacinaItem = await _context.Set<SolicitarVacina>().FirstOrDefaultAsync(x => x.idVacina == id);
+            _context.Set<SolicitarVacina>().Remove(solicitarVacinaItem);
+            
             var vacinaDeletada = await _vacinaRep.DeleteOne(id);
             return Ok(vacinaDeletada);
         }
