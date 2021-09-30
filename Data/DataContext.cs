@@ -10,6 +10,7 @@ namespace sius_server.Data
         public DbSet<Vacina> Vacina { get; set; }
         public DbSet<Login> Login { get; set; }
         public DbSet<SolicitarVacina> SolicitarVacina { get; set; }
+        public DbSet<EstoqueVacina> EstoqueVacina { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }
