@@ -44,7 +44,8 @@ namespace sius_server.Controllers
             SolicitarVacina solicitarVacina = new SolicitarVacina();
             solicitarVacina.idVacina = vacina.Id;
             solicitarVacina.liberado = true;
-                
+            solicitarVacina.recebido = true;
+
             await _solicitarVacinaRep.CreateOne(solicitarVacina);
             
             return Ok(vacinaCriada);
