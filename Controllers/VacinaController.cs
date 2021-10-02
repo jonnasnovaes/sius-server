@@ -13,12 +13,14 @@ namespace sius_server.Controllers
     {
         private readonly IGenericRep<Vacina> _vacinaRep;
         private readonly IGenericRep<SolicitarVacina> _solicitarVacinaRep;
+        private readonly IGenericRep<EstoqueVacina> _estoqueVacinaRep;
         private readonly DataContext _context;
 
-        public VacinaController(IGenericRep<Vacina> vacinaRep, IGenericRep<SolicitarVacina> solicitarVacinaRep, DataContext context)
+        public VacinaController(IGenericRep<Vacina> vacinaRep, IGenericRep<SolicitarVacina> solicitarVacinaRep, IGenericRep<EstoqueVacina> estoqueVacinaRep, DataContext context)
         {
             _vacinaRep = vacinaRep;
             _solicitarVacinaRep = solicitarVacinaRep;
+            _estoqueVacinaRep = estoqueVacinaRep;
             _context = context;
         }
 
@@ -41,12 +43,20 @@ namespace sius_server.Controllers
         {
             var vacinaCriada = await _vacinaRep.CreateOne(vacina);
             
+            // Insert na tabela de SolicitarVacina
             SolicitarVacina solicitarVacina = new SolicitarVacina();
             solicitarVacina.idVacina = vacina.Id;
             solicitarVacina.liberado = true;
             solicitarVacina.recebido = true;
-
             await _solicitarVacinaRep.CreateOne(solicitarVacina);
+            
+            //Insert na tabela de EstoqueVacina
+            EstoqueVacina estoqueVacina = new EstoqueVacina();
+            estoqueVacina.IdVacina = vacina.Id;
+            estoqueVacina.Nome = vacina.Nome;
+            estoqueVacina.Fabricante = vacina.Fabricante;
+            estoqueVacina.Quantidade = 0;
+            await _estoqueVacinaRep.CreateOne(estoqueVacina);
             
             return Ok(vacinaCriada);
         }
