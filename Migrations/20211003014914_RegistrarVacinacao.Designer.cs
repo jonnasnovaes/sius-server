@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sius_server.Data;
 
 namespace sius_server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211003014914_RegistrarVacinacao")]
+    partial class RegistrarVacinacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,8 +72,8 @@ namespace sius_server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DataVacinacao")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdVacina")
+                        .HasColumnType("int");
 
                     b.Property<int>("Idade")
                         .HasColumnType("int");
@@ -82,7 +84,7 @@ namespace sius_server.Migrations
                     b.Property<string>("NumeroSus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Vacina")
+                    b.Property<string>("dataVacinacao")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
