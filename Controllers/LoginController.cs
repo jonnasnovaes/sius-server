@@ -24,6 +24,13 @@ namespace sius_server.Controllers
             return Ok(login);
         }
         
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetLogin(int id)
+        {
+            var loginUsuario = await _loginRep.GetOneById(id);
+            return Ok(loginUsuario);
+        }
+        
         [HttpPost]
         public async Task<IActionResult> PostLogin(Login login)
         {
@@ -60,6 +67,13 @@ namespace sius_server.Controllers
         {
             var loginDeletado = await _loginRep.DeleteOne(id);
             return Ok(loginDeletado);
+        }
+        
+        [HttpPut]
+        public async Task<IActionResult> UpdateLogin(Login login)
+        {
+            var loginEditado = await _loginRep.EditOne(login);
+            return Ok(loginEditado);
         }
     }
 }
