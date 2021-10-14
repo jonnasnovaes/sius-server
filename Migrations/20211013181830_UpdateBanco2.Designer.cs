@@ -9,8 +9,8 @@ using sius_server.Data;
 namespace sius_server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211003015724_RegistrarVacinacaoAjustado2")]
-    partial class RegistrarVacinacaoAjustado2
+    [Migration("20211013181830_UpdateBanco2")]
+    partial class UpdateBanco2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,9 @@ namespace sius_server.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Perfil")

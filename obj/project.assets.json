@@ -5983,19 +5983,19 @@
     ]
   },
   "packageFolders": {
-    "/home/yotta/.nuget/packages/": {}
+    "C:\\Users\\Jhonnata\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/yotta/Área de Trabalho/Projeto Final/sius-server/sius-server.csproj",
+      "projectUniqueName": "D:\\Projeto Final - Faculdade - TCC\\sius-server\\sius-server.csproj",
       "projectName": "sius-server",
-      "projectPath": "/home/yotta/Área de Trabalho/Projeto Final/sius-server/sius-server.csproj",
-      "packagesPath": "/home/yotta/.nuget/packages/",
-      "outputPath": "/home/yotta/Área de Trabalho/Projeto Final/sius-server/obj/",
+      "projectPath": "D:\\Projeto Final - Faculdade - TCC\\sius-server\\sius-server.csproj",
+      "packagesPath": "C:\\Users\\Jhonnata\\.nuget\\packages\\",
+      "outputPath": "D:\\Projeto Final - Faculdade - TCC\\sius-server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/yotta/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Jhonnata\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -6056,7 +6056,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

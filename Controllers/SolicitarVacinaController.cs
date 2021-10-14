@@ -55,5 +55,18 @@ namespace sius_server.Controllers
             
         }
         
+        [HttpPut("cancelado")]
+        public async Task<IActionResult> PutSolicitarVacinaCancelado(SolicitarVacina solicitarVacina)
+        {
+            var vacinaSolicitada = await _context.Set<SolicitarVacina>().FirstOrDefaultAsync(x => x.idVacina == solicitarVacina.idVacina);
+            vacinaSolicitada.liberado = solicitarVacina.liberado;
+            vacinaSolicitada.recebido = solicitarVacina.recebido;
+
+            var vacinaEditada = await _solicitarVacinaRep.EditOne(vacinaSolicitada);
+            return Ok(vacinaEditada);
+            
+            
+        }
+        
     }
 }

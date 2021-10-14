@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/home/yotta/.dotnet/store/|arch|/|tfm|",
-      "/home/yotta/.nuget/packages"
+      "C:\\Users\\Jhonnata\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Jhonnata\\.nuget\\packages"
     ]
   }
 }
