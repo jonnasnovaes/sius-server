@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,21 @@ namespace sius_server.Controllers
             
             return Problem("Não foi possível atualizar o estoque da vacina " + vacinasEstoque.Nome);
             
+        }
+        
+        [HttpPut("editar")]
+        public async Task<IActionResult> PutEditarEstoqueVacina(EstoqueVacina estoqueVacina)
+        {
+            try
+            {
+                var estoqueAtualizado = await _estoqueVacinaRep.EditOne(estoqueVacina);
+                return Ok(estoqueAtualizado);
+            }
+            catch (Exception e)
+            {
+                return Problem("Não foi possível atualizar o estoque da vacina " + estoqueVacina.Nome);
+            }
+
         }
         
     }
