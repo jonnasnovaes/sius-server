@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projeto Final - Faculdade - TCC\\sius-server\\sius-server.csproj": {}
+    "/home/yotta/Área de Trabalho/Projeto Final/sius-server/sius-server.csproj": {}
   },
   "projects": {
-    "D:\\Projeto Final - Faculdade - TCC\\sius-server\\sius-server.csproj": {
+    "/home/yotta/Área de Trabalho/Projeto Final/sius-server/sius-server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projeto Final - Faculdade - TCC\\sius-server\\sius-server.csproj",
+        "projectUniqueName": "/home/yotta/Área de Trabalho/Projeto Final/sius-server/sius-server.csproj",
         "projectName": "sius-server",
-        "projectPath": "D:\\Projeto Final - Faculdade - TCC\\sius-server\\sius-server.csproj",
-        "packagesPath": "C:\\Users\\Jhonnata\\.nuget\\packages\\",
-        "outputPath": "D:\\Projeto Final - Faculdade - TCC\\sius-server\\obj\\",
+        "projectPath": "/home/yotta/Área de Trabalho/Projeto Final/sius-server/sius-server.csproj",
+        "packagesPath": "/home/yotta/.nuget/packages/",
+        "outputPath": "/home/yotta/Área de Trabalho/Projeto Final/sius-server/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jhonnata\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/yotta/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -41,6 +41,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
+            },
+            "Microsoft.AspNetCore.StaticFiles": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -75,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.301/RuntimeIdentifierGraph.json"
         }
       }
     }

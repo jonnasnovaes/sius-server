@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,34 @@ namespace sius_server.Controllers
             await _estoqueVacinaRep.CreateOne(estoqueVacina);
             
             return Ok(vacinaCriada);
+        }
+        
+        [HttpPost("many")]
+        public async Task<IActionResult> PostVacinaMany(List<Vacina> vacina)
+        {
+            var vacinasCriadas = await _vacinaRep.CreateMany(vacina);
+
+            var vacinasCriadasArray = vacinasCriadas.ToArray();
+
+            foreach (var vacinaCriada in vacinasCriadasArray)
+            {
+                // Insert na tabela de SolicitarVacina
+                SolicitarVacina solicitarVacina = new SolicitarVacina();
+                solicitarVacina.idVacina = vacinaCriada.Id;
+                solicitarVacina.liberado = true;
+                solicitarVacina.recebido = true;
+                await _solicitarVacinaRep.CreateOne(solicitarVacina);
+            
+                //Insert na tabela de EstoqueVacina
+                EstoqueVacina estoqueVacina = new EstoqueVacina();
+                estoqueVacina.IdVacina = vacinaCriada.Id;
+                estoqueVacina.Nome = vacinaCriada.Nome;
+                estoqueVacina.Fabricante = vacinaCriada.Fabricante;
+                estoqueVacina.Quantidade = 0;
+                await _estoqueVacinaRep.CreateOne(estoqueVacina);
+            }
+
+            return Ok(vacinasCriadas);
         }
         
         [HttpPut]

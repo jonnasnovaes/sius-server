@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -59,6 +60,13 @@ namespace sius_server.Controllers
         public async Task<IActionResult> PostNewLogin(Login login)
         {
             var loginCriado = await _loginRep.CreateOne(login);
+            return Ok(loginCriado);
+        }
+        
+        [HttpPost("new/many")]
+        public async Task<IActionResult> PostNewLoginMany(List<Login> login)
+        {
+            var loginCriado = await _loginRep.CreateMany(login);
             return Ok(loginCriado);
         }
         

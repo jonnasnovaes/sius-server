@@ -8,5 +8,6 @@ namespace sius_server.Models
         public string Fabricante { get; set; }
         public string DataFabricacao { get; set; }
         public int NumeroRegistro { get; set; }
+        public string Bula { get; set; }
     }
 }
