@@ -102,6 +102,7 @@ namespace sius_server.Controllers
             estoqueVacina.Nome = vacina.Nome;
             estoqueVacina.Fabricante = vacina.Fabricante;
             estoqueVacina.Quantidade = 0;
+            estoqueVacina.Bula = bulaName;
             await _estoqueVacinaRep.CreateOne(estoqueVacina);
             
             return Ok(vacinaCriada);
@@ -130,6 +131,7 @@ namespace sius_server.Controllers
                 estoqueVacina.Nome = vacinaCriada.Nome;
                 estoqueVacina.Fabricante = vacinaCriada.Fabricante;
                 estoqueVacina.Quantidade = 0;
+                estoqueVacina.Bula = "";
                 await _estoqueVacinaRep.CreateOne(estoqueVacina);
             }
 
@@ -168,6 +170,13 @@ namespace sius_server.Controllers
                         vacinaAtual.Bula = fileBula.FileName;
                         vacinaAtual.NumeroRegistro = vacina.NumeroRegistro;
                         await _context.SaveChangesAsync();
+
+                        //Edita na tabela de EstoqueVacina
+                        var estoqueAtualVacina = await _context.Set<EstoqueVacina>().FirstOrDefaultAsync(e => e.IdVacina == vacinaAtual.Id);
+                        estoqueAtualVacina.Nome = vacinaAtual.Nome;
+                        estoqueAtualVacina.Fabricante = vacinaAtual.Fabricante;
+                        estoqueAtualVacina.Bula = vacinaAtual.Bula;
+                        await _context.SaveChangesAsync();
                     }
                 }
                 return Ok(vacinaAtual);
@@ -176,6 +185,15 @@ namespace sius_server.Controllers
             {
                 vacina.Bula = vacinaAtual.Bula;
                 var vacinaAtualizada = await _vacinaRep.EditOne(vacina);
+                
+                //Edita na tabela de EstoqueVacina
+                //Edita na tabela de EstoqueVacina
+                var estoqueAtualVacina = await _context.Set<EstoqueVacina>().FirstOrDefaultAsync(e => e.IdVacina == vacinaAtualizada.Id);
+                estoqueAtualVacina.Nome = vacinaAtual.Nome;
+                estoqueAtualVacina.Fabricante = vacinaAtual.Fabricante;
+                estoqueAtualVacina.Bula = vacinaAtual.Bula;
+                await _context.SaveChangesAsync();
+                
                 return Ok(vacinaAtualizada);
             }
             
