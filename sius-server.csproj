@@ -26,6 +26,9 @@
     <Content Update="wwwroot\bulas\calendarioVacinacao.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Remove="wwwroot\bulas\upc_sinais_sintomas.pdf" />
+    <Content Remove="wwwroot\bulas\REST_API_CMP_LAB_TAESA_v2.6 - 15-10-2021.pdf" />
+    <Content Remove="wwwroot\bulas\Inteligência Artificial.pdf" />
   </ItemGroup>
 
 </Project>
