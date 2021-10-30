@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using sius_server.Data;
@@ -30,6 +31,9 @@ namespace sius_server.Controllers
         [HttpPost]
         public async Task<IActionResult> PostRegistrarVacinacao(RegistrarVacinacao registrarVacinacao)
         {
+            
+            registrarVacinacao.DataVacinacao = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            
             var registroVacinacaoCriado = await _registrarVacinacaoRep.CreateOne(registrarVacinacao);
             return Ok(registroVacinacaoCriado);
         }
