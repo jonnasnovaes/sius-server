@@ -37,5 +37,11 @@ namespace sius_server.Controllers
             var registroVacinacaoCriado = await _registrarVacinacaoRep.CreateOne(registrarVacinacao);
             return Ok(registroVacinacaoCriado);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRegistrarVacinacaoAll(int id)
+        {
+            return Ok(await _registrarVacinacaoRep.DeleteOne(id));
+        }
     }
 }
