@@ -59,6 +59,20 @@ namespace sius_server.Controllers
             }
 
         }
-        
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteEstoqueVacina(int id)
+        {
+            try
+            {
+                return Ok(await _estoqueVacinaRep.DeleteOne(id));
+            }
+            catch (Exception e)
+            {
+                return Problem("Não foi possível deletar a vacina do estoque");
+            }
+            
+        }
+
     }
 }
